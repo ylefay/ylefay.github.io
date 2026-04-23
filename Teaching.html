@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=yes">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Yvann Le Fay – Teaching</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrapper" class="toggled">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="index.html">Home</a>
+            </li>
+            <li>
+                <a href="Publications.html">Papers</a>
+            </li>
+            <li>
+                <a href="Teaching.html">Teaching</a>
+            </li>
+            <li>
+                <a href="Contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 style="margin-bottom: 50px;">Teaching</h1>
+
+                    <p style="font-size: 18px;">
+                        I am a teaching assistant at ENSAE, where I contribute to several core courses in statistics.
+                        This page provides selected material for students attending my tutorials (TD), as well as an overview
+                        of my teaching activities.
+                    </p>
+
+                    <!-- ================= CURRENT YEAR ================= -->
+
+                    <h3 style="border-bottom: 1px dashed grey;">Academic year 2025–2026</h3>
+
+                    <p style="font-size: 18px;"><b>Stochastic Processes and Markov Chains (<a href="https://nchopin.github.io/teaching.html">Nicolas Chopin</a>)</b></p>
+                    <p style="font-size: 16px;">
+                        Tutorial sessions covering (discrete) Markov chains, ergodicity theorems, and stochastic processes.
+                    </p>
+
+                    <p style="font-size: 18px;"><b>Monte Carlo Simulations (<a href="https://nchopin.github.io/teaching.html">Nicolas Chopin</a>)</b></p>
+                    <p style="font-size: 16px;">
+                        Implementation-focused sessions (Python / JAX) covering Monte Carlo methods (Gibbs, Random-walk, Rejection, Importance Sampling, etc.).
+                        <br>
+                        Correction notebooks:
+                        <ul style="font-size: 16px;">
+                            <li><a href="resources/teaching/simu_mc/2026/">2026 materials</a></li>
+                        </ul>
+                    </p>
+
+                    <p style="font-size: 18px;"><b>Non-parametric Statistics (<a href="https://vincentdivol.ouvaton.org/">Vincent Divol</a>)</b></p>
+                    <p style="font-size: 16px;">
+                        Tutorials on estimation methods beyond parametric models.
+                    </p>
+
+                    <p style="font-size: 18px;"><b>Statistical Tests (Statistique 2, <a href="https://cbutucea.perso.math.cnrs.fr/">Cristina Butucea</a>)</b></p>
+                    <p style="font-size: 16px;">
+                        Hypothesis testing.
+                        <br>
+                        Half-term Exam correction:
+                        <ul style="font-size: 16px;">
+                            <li><a href="resources/teaching/stats2/26/correction_mip.pdf">Correction (2026)</a></li>
+                        </ul>
+                    </p>
+
+                    <!-- ================= PREVIOUS YEAR ================= -->
+
+                    <h3 style="border-bottom: 1px dashed grey;">Academic year 2024–2025</h3>
+
+                    <p style="font-size: 18px;"><b>Monte Carlo Simulations</b></p>
+                    <p style="font-size: 16px;">
+                        Implementation-focused sessions (Python / JAX).
+                        <br>
+                        Correction notebooks:
+                        <ul style="font-size: 16px;">
+                            <li><a href="resources/teaching/simu_mc/2025/">2025 materials</a></li>
+                        </ul>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+$("#menu-toggle").click(function(e) {
+    e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+});
+</script>
+
+</body>
+
+</html>

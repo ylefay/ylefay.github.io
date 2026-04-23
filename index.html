@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=yes">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Yvann Le Fay</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="wrapper" class="toggled">
+
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">Home</a>
+            </li>
+            <li>
+                <a href="Publications.html">Papers</a>
+            </li>
+            <li>
+                <a href="Teaching.html">Teaching</a>
+            </li>
+            <li>
+                <a href="Contact.html">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <h1 style="margin-bottom: 50px;">Yvann Le Fay</h1>
+
+                    <h3 style="border-bottom: 1px dashed grey;">About</h3>
+                    <p style="font-size: 18px;">
+                        I am a second-year PhD student in Statistics at
+                        <a href="https://crest.science/">CREST</a> (Institut Polytechnique de Paris),
+                        supervised by <a href="https://nchopin.github.io/">Nicolas Chopin</a>. <br><br>
+
+                        My research focuses on computational statistics, with an emphasis on
+                        Sequential Monte Carlo methods, variational inference, and scalable
+                        algorithmic approaches to uncertainty quantification.
+                    </p>
+
+                    <h3 style="border-bottom: 1px dashed grey;">News</h3>
+                    <ul style="font-size: 18px; line-height: 1.8;">
+                        <li>
+                            <i>June 2026:</i>
+                            I will be attending the <a
+                                href="https://math.ethz.ch/fim/activities/conferences/scalable-mcmc-sampling.html">Scalable
+                            MCMC Sampling program at ETH Zürich</a>.
+                        </li>
+                        <li>
+                            <i>May 4 2026:</i>
+                            I will be presenting in LSVI at <a
+                                href="https://hi-paris.fr/research/symposium/program-speakers">A Symposium at the
+                            Crossroads of AI, Biochemistry, and Health</a> organised by HI! Paris, see .
+                        </li>
+                        <li>
+                            <i>December 2025:</i> Presented my work on
+                            <a href="https://neurips.cc/virtual/2025/loc/san-diego/poster/118924">
+                                Least Squares Variational Inference</a> in San Diego (NeurIPS).
+                        </li>
+                    </ul>
+
+
+                    <h3 style="border-bottom: 1px dashed grey;">GitHub</h3>
+                    <p style="font-size: 18px;">
+                        <a href="https://github.com/ylefay">github.com/ylefay</a>
+                        <br><br>
+
+                        Selected repositories:
+                    <ul style="font-size: 18px;">
+                        <li>
+                            <a href="https://github.com/ylefay/LSVI">
+                                LSVI (Least squares variational inference)</a> — Variational inference as linear
+                            regression.
+                        </li>
+                        <li>
+                            <a href="https://github.com/ylefay/bayesianSDEsolver">
+                                Bayesian SDE Solver</a> — probabilistic numerics approach to SDEs using Gaussian
+                            filtering.
+                        </li>
+                        <li>
+                            <a href="https://github.com/ylefay/jaxSMC">
+                                jaxSMC</a> — efficient GPU-compatible implementation of Sequential Monte Carlo samplers,
+                            including automatically calibrated SMC and greedy variants to reduce computational cost.
+                        </li>
+                    </ul>
+                    </p>
+
+                    <h3 style="border-bottom: 1px dashed grey;">Bio</h3>
+                    <p style="font-size: 18px;">
+                        My CV is:
+                        <a href="resources/CVMarch26.pdf">here</a>.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
+
+</body>
+</html>
