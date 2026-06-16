@@ -191,7 +191,6 @@ Matti Vihola
 <li class="fragment">Keep only the <strong>end-points</strong> <span class="math inline">\(X^{m,P}_t\)</span>.</li>
 <li class="fragment">Reweight and resample the <span class="math inline">\(M\)</span> end-points.</li>
 </ul>
-<p>. . .</p>
 <p>Only <span class="math inline">\(M\)</span> of the <span class="math inline">\(N = MP\)</span> simulated states survive — the intermediate states are <strong>wasted</strong>.</p>
 </div><div class="column" style="width:58%;">
 <div class="quarto-figure quarto-figure-center">
@@ -212,7 +211,6 @@ Matti Vihola
 <li class="fragment">Run <span class="math inline">\(M\)</span> chains of length <span class="math inline">\(P\)</span>, keep <strong>all <span class="math inline">\(N = MP\)</span> states</strong>.</li>
 <li class="fragment">Reweight all <span class="math inline">\(N\)</span> states; resample <span class="math inline">\(M\)</span> chain start-points from them.</li>
 </ul>
-<p>. . .</p>
 <p>Nothing is wasted — the same budget yields <span class="math inline">\(N\)</span> usable states per iteration.</p>
 </div><div class="column" style="width:58%;">
 <div class="quarto-figure quarto-figure-center">
@@ -234,28 +232,24 @@ Matti Vihola
 </section>
 <section id="goal-2-normalising-constant-estimation" class="slide level2">
 <h2>Goal 2: Normalising Constant Estimation</h2>
-<p>SMC provides an unbiased estimate of each ratio <span class="math inline">\(Z_t/Z_{t-1} = \pi_{t-1}(G_t)\)</span>, and therefore: <span class="math display">\[\hat Z_T = \prod_{t=0}^T \widehat{\frac{Z_t}{Z_{t-1}}},\qquad \text{with } \hat{\frac{Z_t}{Z_{t-1}}} = \hat{\pi}_{t-1}(G_t),\]</span> is an unbiased estimate of <span class="math inline">\(Z_T\)</span>.</p>
+<p>SMC provides an unbiased estimate of each ratio <span class="math inline">\(Z_t/Z_{t-1} = \pi_{t-1}(G_t)\)</span>, and therefore: <span class="math display">\[\hat Z_T = \prod_{t=0}^T \widehat{\frac{Z_t}{Z_{t-1}}},\qquad \text{with } \widehat{\frac{Z_t}{Z_{t-1}}} = \hat{\pi}_{t-1}(G_t),\]</span> is an unbiased estimate of <span class="math inline">\(Z_T\)</span>.</p>
 <p><strong>Goal:</strong> find conditions on <span class="math inline">\(M\)</span> and <span class="math inline">\(P\)</span> ensuring <span class="math display">\[\Pr\!\left(\left|\frac{\hat Z_T}{Z_T} - 1\right| &lt; \varepsilon\right) \geq 1 - \eta.\]</span></p>
-<div class="fragment">
 <p><strong>Challenge (1):</strong> <span class="math inline">\(\hat Z_T\)</span> is a product of <span class="math inline">\(T\)</span> terms — small relative errors compound multiplicatively.</p>
-</div>
-<div class="fragment">
 <p><strong>Challenge (2):</strong> <span class="math inline">\(\frac{G_t}{\pi_{t-1}(G_t)}\)</span> can be unbounded, exponentially large in <span class="math inline">\(d\)</span> even under bounded <span class="math inline">\(\chi^2\)</span> assumption.</p>
-</div>
 </section>
 <section id="assumptions" class="slide level2">
 <h2>Assumptions</h2>
 <p><strong>Assumption A1.</strong> <span class="math inline">\(K_t\)</span> leaves <span class="math inline">\(\pi_{t-1}\)</span> invariant for all <span class="math inline">\(t\)</span>.</p>
-<p><strong>Assumption A3.</strong> Each <span class="math inline">\(K_t\)</span> admits a spectral gap <span class="math inline">\(\gamma_t &gt; 0\)</span>; let <span class="math inline">\(\gamma = \min_t \gamma_t\)</span>.</p>
+<p><strong>Assumption A2.</strong> Each <span class="math inline">\(K_t\)</span> admits a spectral gap <span class="math inline">\(\gamma_t &gt; 0\)</span>; let <span class="math inline">\(\gamma = \min_t \gamma_t\)</span>.</p>
 <ul>
 <li class="fragment">Mixing time: <span class="math inline">\(\tau(\xi,\mu,K)=\min\{n : \text{TV}(\mu K^n,\pi)\le \xi\} \leq \frac{1}{\gamma} \log\!\left(\frac{\omega}{\xi}\right)\)</span>, assuming <span class="math inline">\(\mu \ll \pi\)</span> with <span class="math inline">\(\omega \geq \sup_x \frac{\mathrm{d}\mu}{\mathrm{d}\pi}(x)\)</span>.</li>
 </ul>
-<p><strong>Assumption A4.</strong> <span class="math inline">\(\chi^2(\pi_t \mid \pi_{t-1}) \leq 1\)</span> for all <span class="math inline">\(t\)</span>.</p>
+<p><strong>Assumption A3.</strong> <span class="math inline">\(\chi^2(\pi_t \mid \pi_{t-1}) \leq 1\)</span> for all <span class="math inline">\(t\)</span>.</p>
 </section>
 <section id="known-result-marion-et-al.-20232025" class="slide level2">
 <h2>Known Result: Marion et al.&nbsp;(2023/2025)</h2>
-<p><strong>Theorem.</strong> Under A1, A4, and a mixing time assumption: taking <span class="math inline">\(M \geq \Omega(\log(T\eta^{-2})\varepsilon^{-2})\)</span> and <span class="math inline">\(P \geq \Omega\left(\tau\!\left(\frac{\eta}{MT}\right)\right)\)</span> ensures <span class="math display">\[\Pr\!\left(|\hat\pi_{T-1}(f) - \pi_{T-1}(f)| &lt; \varepsilon\right) \geq 1 - \eta.\]</span></p>
-<p><strong>Query complexity:</strong> Under the spectral gap assumption A3, this implies the complexity <span class="math display">\[O\!\left(\frac{T}{\gamma\varepsilon^2} \log\frac{T}{\eta^2} \log\!\left(\frac{T}{\eta\varepsilon^2} \log\frac{T}{\eta^2}\right)\right).\]</span></p>
+<p><strong>Theorem.</strong> Under A1, A3, and a mixing time assumption: taking <span class="math inline">\(M \geq \Omega(\log(T\eta^{-2})\varepsilon^{-2})\)</span> and <span class="math inline">\(P \geq \Omega\left(\tau\!\left(\frac{\eta}{MT}\right)\right)\)</span> ensures <span class="math display">\[\Pr\!\left(|\hat\pi_{T-1}(f) - \pi_{T-1}(f)| &lt; \varepsilon\right) \geq 1 - \eta.\]</span></p>
+<p><strong>Query complexity:</strong> Under the spectral gap assumption A2, this implies the complexity <span class="math display">\[O\!\left(\frac{T}{\gamma\varepsilon^2} \log\frac{T}{\eta^2} \log\!\left(\frac{T}{\eta\varepsilon^2} \log\frac{T}{\eta^2}\right)\right).\]</span></p>
 </section>
 <section id="old-and-new-results" class="slide level2">
 <h2>Old and new results</h2>
@@ -267,8 +261,7 @@ Matti Vihola
 </section>
 <section id="moment-estimates-waste-free-smc" class="slide level2">
 <h2>Moment Estimates: Waste-Free SMC</h2>
-<p><strong>Theorem 3.1.</strong> Under A1, A3, A4. Fix <span class="math inline">\(M \geq 1\)</span>. For some constant <span class="math inline">\(C\)</span>, taking <span class="math display">\[P \geq \frac{C}{\gamma}\max\!\left\{\log\frac{MT}{\eta},\quad \frac{1}{\varepsilon^2}\log\frac{T}{\eta}\right\}\]</span> ensures that <span class="math inline">\(\hat\pi_{T-1}(f) = N^{-1}\sum_{m,p} f(X^{m,p}_T)\)</span> satisfies <span class="math display">\[\Pr\!\left(|\hat\pi_{T-1}(f) - \pi_{T-1}(f)| &lt; \varepsilon\right) \geq 1 - \eta.\]</span></p>
-<div class="fragment">
+<p><strong>Theorem 3.1.</strong> Under A1, A2, A3. Fix <span class="math inline">\(M \geq 1\)</span>. For some constant <span class="math inline">\(C\)</span>, taking <span class="math display">\[P \geq \frac{C}{\gamma}\max\!\left\{\log\frac{MT}{\eta},\quad \frac{1}{\varepsilon^2}\log\frac{T}{\eta}\right\}\]</span> ensures that <span class="math inline">\(\hat\pi_{T-1}(f) = N^{-1}\sum_{m,p} f(X^{m,p}_T)\)</span> satisfies <span class="math display">\[\Pr\!\left(|\hat\pi_{T-1}(f) - \pi_{T-1}(f)| &lt; \varepsilon\right) \geq 1 - \eta.\]</span></p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -290,16 +283,12 @@ Matti Vihola
 </tr>
 </tbody>
 </table>
-</div>
 </section>
 <section id="moment-estimates-greedy-waste-free-smc" class="slide level2">
 <h2>Moment Estimates: Greedy Waste-Free SMC</h2>
 <p>Allow <span class="math inline">\(P_t\)</span> to vary across iterations.</p>
-<div class="fragment">
 <p><strong>Theorem 3.2.</strong> For some constant <span class="math inline">\(C\)</span>, the same guarantee holds as soon as: <span class="math display">\[P_{0:T-1} \geq \frac{C}{\gamma}\log\frac{MT}{\eta}, \qquad P_T \geq \frac{C}{\gamma\varepsilon^2}\log\frac{T}{\eta}.\]</span></p>
 <p><strong>Resulting complexity</strong> (<span class="math inline">\(M \leq O(1)\)</span>): <span class="math display">\[O\!\left(\frac{T}{\gamma}\log\frac{T}{\eta} + \frac{1}{\gamma\varepsilon^2}\log\frac{T}{\eta}\right).\]</span></p>
-</div>
-<div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -313,40 +302,33 @@ Matti Vihola
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="normalising-constants-challenge" class="slide level2">
 <h2>Normalising Constants: Challenge</h2>
-<p><strong>Key difficulty:</strong> Previous Gaussian concentration requires uniform bounds on the normalised reweighting functions <span class="math inline">\(G_t/\pi_{t-1}(G_t)\)</span> which can be <strong>exponentially large</strong> in <span class="math inline">\(d\)</span> even under A4.</p>
-<div class="fragment">
+<p><strong>Key difficulty:</strong> Previous Gaussian concentration requires uniform bounds on the normalised reweighting functions <span class="math inline">\(G_t/\pi_{t-1}(G_t)\)</span> which can be <strong>exponentially large</strong> in <span class="math inline">\(d\)</span> even under A3.</p>
 <p><strong>Solution:</strong> use second moment approach instead of Gaussian concentration, since this is aligned with the relative variance assumption on <span class="math inline">\(G_t\)</span>.</p>
-</div>
 </section>
 <section id="normalising-constants-first-bounds" class="slide level2">
 <h2>Normalising Constants: First Bounds</h2>
-<p><strong>Theorem 3.3</strong> (WF-SMC). Under A3 + A4, <span class="math inline">\(M \leq O(1)\)</span>, <span class="math inline">\(P \geq \Omega( T^3 / (\gamma\varepsilon^2))\)</span>: <span class="math display">\[\Pr\!\left(|\hat Z_T / Z_T - 1| &lt; \varepsilon\right) \geq 3/4, \qquad \text{cost } O\!\left(\frac{T^4}{\gamma\varepsilon^2}\right).\]</span></p>
-<div class="fragment">
+<p><strong>Theorem 3.3</strong> (WF-SMC). Under A2 + A3, <span class="math inline">\(M \leq O(1)\)</span>, <span class="math inline">\(P \geq \Omega( T^3 / (\gamma\varepsilon^2))\)</span>: <span class="math display">\[\Pr\!\left(|\hat Z_T / Z_T - 1| &lt; \varepsilon\right) \geq 3/4, \qquad \text{cost } O\!\left(\frac{T^4}{\gamma\varepsilon^2}\right).\]</span></p>
 <p><strong>Theorem 6.1</strong> (Standard SMC, mixing times only). <span class="math inline">\(M \geq \Omega(T^3/\varepsilon^2)\)</span>, <span class="math inline">\(P \geq \Omega(\tau(1/(MT)))\)</span>: <span class="math display">\[\Pr\!\left(|\hat Z_T / Z_T - 1| &lt; \varepsilon\right) \geq 3/4, \qquad \text{cost } O\!\left(\frac{T^4}{\varepsilon^2}\,\tau\!\left(\frac{\varepsilon^2}{T^4}\right)\right).\]</span></p>
-</div>
 </section>
 <section id="normalising-constants-product-of-medians" class="slide level2">
 <h2>Normalising Constants: Product-of-Medians</h2>
 <p>Run <span class="math inline">\(J = \Theta(\log(T/\eta))\)</span> independent copies; take the median at each step: <span class="math display">\[\hat Z_T^{\mathrm{med}} = \prod_{t=0}^T \mathrm{median}_j\!\left\{\hat\pi_{t-1}^{(j)}(G_t)\right\}.\]</span></p>
 <p><strong>Theorem 3.5</strong> (WF-SMC). <span class="math inline">\(M \leq O(1)\)</span>, <span class="math inline">\(P \geq \Omega(T^2 / (\gamma\varepsilon^2))\)</span>: <span class="math display">\[\Pr\!\left(|\hat Z_T^{\mathrm{med}} / Z_T - 1| &lt; \varepsilon\right) \geq 1 - \eta, \qquad \text{cost } O\!\left(\frac{T^3}{\gamma\varepsilon^2}\log\frac{T}{\eta}\right).\]</span></p>
-<div class="fragment">
 <p><strong>Theorem 6.2</strong> (Standard SMC, mixing times only). <span class="math inline">\(M \geq \Omega(T^2/\varepsilon^2)\)</span>, <span class="math inline">\(P \geq \Omega(\tau(1/(MT)))\)</span>: <span class="math display">\[\Pr\!\left(|\hat Z_T^{\mathrm{med}} / Z_T - 1| &lt; \varepsilon\right) \geq 1 - \eta, \qquad \text{cost } O\!\left(\frac{T^3}{\varepsilon^2}\,\tau\!\left(\frac{\varepsilon^2}{T^3}\right)\log\frac{T}{\eta}\right).\]</span></p>
-</div>
 </section>
 <section id="tempering-bounding-chi2" class="slide level2">
 <h2>Tempering: Bounding <span class="math inline">\(\chi^2\)</span></h2>
-<p><strong>Assumption A5.</strong> <span class="math inline">\(q \propto e^{-Q}\)</span>, <span class="math inline">\(\pi \propto e^{-U}\)</span>, <span class="math inline">\(V = U - Q\)</span> satisfies: <span class="math display">\[\nabla^2(Q + \lambda V) \succeq (\alpha_Q + \lambda\alpha_V)I \succ 0 , \qquad \nabla^2 V \preceq \beta_V I.\]</span></p>
-<p><strong>Theorem 5.1.</strong> Under A5, the tempering sequence of length <span class="math display">\[T =  \Theta\left( \kappa_V \sqrt{d}\log\left(1+\frac{\alpha_V}{c\alpha_Q}\right)\right), \quad \kappa_V = \beta_V / \alpha_V,\]</span> given by <span class="math display">\[\lambda_t = 1 \wedge \left[
+<p><strong>Assumption A4.</strong> <span class="math inline">\(q \propto e^{-Q}\)</span>, <span class="math inline">\(\pi \propto e^{-U}\)</span>, <span class="math inline">\(V = U - Q\)</span> satisfies: <span class="math display">\[\nabla^2(Q + \lambda V) \succeq (\alpha_Q + \lambda\alpha_V)I \succ 0 , \qquad \nabla^2 V \preceq \beta_V I.\]</span></p>
+<p><strong>Theorem 5.1.</strong> Under A4, the tempering sequence of length <span class="math display">\[T =  \Theta\left( \kappa_V \sqrt{d}\log\left(1+\frac{\alpha_V}{c\alpha_Q}\right)\right), \quad \kappa_V = \beta_V / \alpha_V,\]</span> given by <span class="math display">\[\lambda_t = 1 \wedge \left[
                                  \frac{c\alpha_Q}{\alpha_V}\left\{\left(1+\frac{1}{\kappa_V
             \sqrt{d}}\right)^{t+1}-1\right\}\right]\]</span> for some <span class="math inline">\(c&gt;0\)</span> is such that <span class="math inline">\(\chi^2(\pi_t \mid \pi_{t-1}) \leq 1\)</span> for all <span class="math inline">\(t\)</span>.</p>
 </section>
 <section id="tempering-within-waste-free-smc" class="slide level2">
 <h2>Tempering within waste-free SMC</h2>
-<p>Under A3 + A5 with <span class="math inline">\(T = \Theta(\kappa_V\sqrt{d})\)</span>:</p>
+<p>Under A2 + A4 with <span class="math inline">\(T = \Theta(\kappa_V\sqrt{d})\)</span>:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -413,7 +395,7 @@ Matti Vihola
 </tr>
 </tbody>
 </table>
-<p>Log factors omitted; failure probability <span class="math inline">\(\eta \leq 1/4\)</span>.</p>
+<p>Log factors omitted; fixed failure probability <span class="math inline">\(\eta \leq 1/4\)</span>.</p>
 </section>
 <section id="practical-recommendations" class="slide level2">
 <h2>Practical Recommendations</h2>
@@ -431,7 +413,6 @@ Matti Vihola
 </div>
 </div>
 </div>
-<div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -445,10 +426,9 @@ Matti Vihola
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="hatz_t-vs-hatzmathrmmed_t" class="slide level2">
-<h2><span class="math inline">\(\hat{Z}_T\)</span> vs <span class="math inline">\(\hat{Z}^{\mathrm{med}}_T\)</span></h2>
+<section id="robust-estimation-of-z-hatz_t-vs-hatzmathrmmed_t" class="slide level2">
+<h2>Robust estimation of <span class="math inline">\(Z\)</span>: <span class="math inline">\(\hat{Z}_T\)</span> vs <span class="math inline">\(\hat{Z}^{\mathrm{med}}_T\)</span></h2>
 <div class="quarto-figure quarto-figure-center">
 <figure>
 <div class="quarto-figure quarto-figure-center">
@@ -466,13 +446,10 @@ Matti Vihola
 <div class="columns">
 <div class="column" style="width:55%;">
 <ul>
-<li class="fragment">Target <span class="math inline">\(\pi_T = \tfrac12\mathcal{N}(-(2,2)^\top, I_2) + \tfrac12\mathcal{N}((3,3)^\top, I_2)\)</span>, starting from <span class="math inline">\(\nu = \mathcal{N}(0_2, I_2)\)</span>, geometric tempering, RWM kernels.</li>
-<li class="fragment">Each point: <span class="math inline">\(4\times 10^4\)</span> independent runs.</li>
-</ul>
-<p>. . .</p>
-<ul>
-<li class="fragment">Taking <span class="math inline">\(C &gt; 1\)</span> <strong>reduces error</strong>: shifting budget to the final iteration helps.</li>
-<li class="fragment">But too large <span class="math inline">\(C\)</span> starves the intermediate iterations: their <span class="math inline">\(P_t\)</span> drops below the mixing time, the bias <strong>blows up</strong>.</li>
+<li class="fragment"><p>Target <span class="math inline">\(\pi_T = \tfrac12\mathcal{N}(-(2,2)^\top, I_2) + \tfrac12\mathcal{N}((3,3)^\top, I_2)\)</span>, starting from <span class="math inline">\(\nu = \mathcal{N}(0_2, I_2)\)</span>, geometric tempering, RWM kernels.</p></li>
+<li class="fragment"><p>Each point: <span class="math inline">\(4\times 10^4\)</span> independent runs.</p></li>
+<li class="fragment"><p>Taking <span class="math inline">\(C &gt; 1\)</span> <strong>reduces error</strong>: shifting budget to the final iteration helps.</p></li>
+<li class="fragment"><p>But too large <span class="math inline">\(C\)</span> yields <span class="math inline">\(P_t\)</span> to be below the mixing time, and the bias <strong>blows up</strong> (typically mode collapse).</p></li>
 </ul>
 </div><div class="column" style="width:45%;">
 <div class="quarto-figure quarto-figure-center">
